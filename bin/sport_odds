@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require "bundler/setup"
+require_relative '../lib/sports_odds'
+#
+SportsOdds::Scraper.new.test
