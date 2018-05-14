@@ -1,3 +1,3 @@
-class SportsOdds::Scraper
+class SportsOdds::Odds
 
 end
