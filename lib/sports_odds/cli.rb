@@ -1,6 +1,9 @@
 class SportsOdds::CLI
   attr_accessor :booking_company, :team_choice
 
+  @booking_company = nil
+  @team_choice = nil
+
   # 1. Welcome user
   def hey
     puts "Welcome the Sports Odds World!"
@@ -9,7 +12,7 @@ class SportsOdds::CLI
   # 2. Provide a list of booking companies
   def booking_companies
     puts ""
-    puts "Booking companies have different sports odds. Pick a booking company to see some odds. Otherwise, type /'exit/' to leave.'"
+    puts "Booking companies have different sports odds. Pick a booking company to see some odds. Otherwise, type 'exit.'"
     puts "Booking companies 123"
   # 3. Ask for user to pick a booking company
     @booking_company = gets.strip.downcase
@@ -24,7 +27,7 @@ class SportsOdds::CLI
   end
 
   # 6. Return odds based off user picks
-  def odds # (@booking_company = nil, @team_choice = nil)
+  def odds
     puts ""
     puts "The 49ers odds of winning is 100%. Just saying."
   end
