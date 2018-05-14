@@ -4,6 +4,10 @@ class SportsOdds::CLI
   @booking_company = nil
   @team_choice = nil
 
+  def call
+    hey
+    menu
+  end
   # 1. Welcome user
   def hey
     puts "Welcome the Sports Odds World!"
@@ -21,7 +25,7 @@ class SportsOdds::CLI
   # 4. Provide list of teams
   def team_list
     puts ""
-    puts "All about the 49ers!"
+    puts "team list"
   # 5. Ask for user to pick a team
     @team_choice = gets.strip.downcase
   end
@@ -38,21 +42,25 @@ class SportsOdds::CLI
   end
 
   def menu
+    # 6. Return odds based off user picks
     # 7. Ask user to exit or get more odds?
     # 8. Ask for booking company again
     # 9. Ask for team again
     # 10. Return odds
     # 11. Loop through 7-10 until user exits
     # 12. If exit, say good-bye
-  #   hey
-  #   booking_company
-  #   binding.pry
-  #   if @booking_company != 'exit'
-  #     team_list
-  #     @team_choice != 'exit' ? odds(@booking_company, @team_choice) : bye
-  #     end
-  #   else
-  #     bye
-  end
+    booking_company
+    if @booking_company != 'exit'
+      team_list
+      odds
+      puts ""
+      puts "Would you like to see more odds (using the same booking company) or exit?"
+      @team_choice = gets.strip.downcase
+      menu
+    else
+      bye
+    end
 
-end
+  end #menu
+
+end #class
