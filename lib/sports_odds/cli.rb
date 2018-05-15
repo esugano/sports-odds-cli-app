@@ -19,14 +19,24 @@ class SportsOdds::CLI
     puts "Booking companies have different sports odds. Pick a booking company to see some odds. Otherwise, type 'exit.'"
     SportsOdds::Odds.list_booking_companies
     @booking_company = gets.strip.downcase
-    #get css class names (to use in scraping) based on booking company
-    if @booking_company != 'exit'
-      #what if user types in an invalid answer?
-      SportsOdds::Odds.choose_booking_company(company)
-    else
-      bye
-    end
 
+    #get css class names (to use in scraping) based on booking company
+    if @booking_company == 'exit'
+      bye
+    else
+      while @booking_company != 'exit'
+        @class_name = SportsOdds::Odds.choose_booking_company(@booking_company)
+        binding.pry
+        if @class_name != nil
+          puts "Your booking company is #{@booking_company.capitalize}."
+          return @class_name
+        else
+          puts "Invalid answer. Please try again."
+          @booking_company = gets.strip.downcase
+        end
+      end
+    end
+# SportsOdds::CLI.new.booking_companies
   end
 
   # 4. Provide list of teams
