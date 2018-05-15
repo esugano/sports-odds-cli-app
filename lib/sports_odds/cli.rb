@@ -13,13 +13,20 @@ class SportsOdds::CLI
     puts "Welcome the Sports Odds World!"
   end
 
-  # 2. Provide a list of booking companies
   def booking_companies
+    #Provide a list of booking companies and ask for user to pick one
     puts ""
     puts "Booking companies have different sports odds. Pick a booking company to see some odds. Otherwise, type 'exit.'"
-    puts "Booking companies 123"
-  # 3. Ask for user to pick a booking company
+    SportsOdds::Odds.list_booking_companies
     @booking_company = gets.strip.downcase
+    #get css class names (to use in scraping) based on booking company
+    if @booking_company != 'exit'
+      #what if user types in an invalid answer?
+      SportsOdds::Odds.choose_booking_company(company)
+    else
+      bye
+    end
+
   end
 
   # 4. Provide list of teams
