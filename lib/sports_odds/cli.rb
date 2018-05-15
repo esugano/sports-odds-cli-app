@@ -49,7 +49,7 @@ class SportsOdds::CLI
     # 10. Return odds
     # 11. Loop through 7-10 until user exits
     # 12. If exit, say good-bye
-    booking_company
+    booking_companies
     if @booking_company != 'exit'
       team_list
       odds
