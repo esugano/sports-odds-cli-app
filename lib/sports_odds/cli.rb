@@ -28,15 +28,15 @@ class SportsOdds::CLI
         @booking_company = SportsOdds::Odds.choose_booking_company(input)
         if @booking_company != nil
           puts "Your booking company is #{input.capitalize}."
-          return @booking_company.class_name
+          SportsOdds::Scraper.scrape_page(@booking_company.class_name)
+          binding.pry
         else
           puts "Invalid answer. Please try again."
           input = gets.strip.downcase
         end
       end
     end
-
-  end
+  end #booking_companies
 
   # 4. Provide list of teams
   def team_list

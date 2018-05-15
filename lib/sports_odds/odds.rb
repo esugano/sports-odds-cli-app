@@ -1,4 +1,17 @@
 class SportsOdds::Odds
+  attr_accessor :name, :odds
+
+  @@all = []
+
+  def initialize(name, odds)
+    @name = name
+    @odds = odds
+    @@all << self
+  end
+
+  def self.all
+    @@all
+  end
 
   def self.make_booking_company
     SportsOdds::BookingCompanies.new("bookmaker","book-93")
