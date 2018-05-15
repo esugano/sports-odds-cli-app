@@ -1,5 +1,5 @@
 class SportsOdds::Odds
-
+  
   def self.make_booking_company
     SportsOdds::BookingCompanies.new("bookmaker","book-93")
     SportsOdds::BookingCompanies.new("5dimes","book-19")
@@ -10,19 +10,20 @@ class SportsOdds::Odds
     SportsOdds::BookingCompanies.new("youwager","book-139ß")
     SportsOdds::BookingCompanies.all
   end
-
+  
+#list booking companies
   def self.list_booking_companies
     self.make_booking_company.each do |booking_company|
       puts booking_company.name.capitalize
     end
   end
 
+#get css class names (to use in scraping) based on booking company
   def self.choose_booking_company(company)
-    #get css class names based on company
-    # list companies
-    # if company == one of the companies
-    #   return class names
-    # end
+    SportsOdds::BookingCompanies.all.each do |booking_company|
+      if booking_company.name == company.downcase
+        booking_company.class_name
+      end
+    end
   end
-
 end
