@@ -41,15 +41,10 @@ class SportsOdds::Odds
   end
 
 #list teams based off user's booking company pick
-#must fix this sandwich below. How to puts and return just the team names?
 def self.list_teams
-  names = []
-  @@all.map do |team|
-    names << team.name.upcase
-    names
+  @@all.each do |team|
+    puts team.name.upcase
   end
-
-
 end
 
 end #class

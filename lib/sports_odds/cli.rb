@@ -7,7 +7,6 @@ class SportsOdds::CLI
   def call
     hey
     booking_companies
-    binding.pry
     make_teams
   end
 
@@ -46,8 +45,14 @@ class SportsOdds::CLI
     puts ""
     puts "Please pick a team from the following list:"
     SportsOdds::Odds.list_teams
+    puts ""
     @team_choice = gets.strip.upcase
-    SportsOdds::Odds.list_teams.include?(@team_choice) ? "You pick #{@team_choice}" : "blah blah blah"
+    SportsOdds::Odds.all.each do |team|
+      if @team_choice == team.name.upcase
+        puts ""
+        puts "You pick #{@team_choice.capitalize}"
+      end
+    end
   end
 
   # SportsOdds::Scraper.scrape_page(bookmaker)
