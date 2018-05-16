@@ -50,11 +50,10 @@ class SportsOdds::CLI
     SportsOdds::Odds.all.each do |team|
       if @team_choice == team.name.upcase
         puts ""
-        puts "#{@team_choice.capitalize} odds are #{team.odds}"
+        puts "#{@team_choice.capitalize} odds are#{team.odds}"
       end
     end
   end
-
 
   def bye
     puts "You are now exiting the terminal. PEACE."
