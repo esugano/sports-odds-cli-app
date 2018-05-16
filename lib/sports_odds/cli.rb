@@ -8,13 +8,14 @@ class SportsOdds::CLI
     hey
     booking_companies
   end
-  # 1. Welcome user
+
+  #Welcome user
   def hey
     puts "Welcome the Sports Odds World!"
   end
 
+  #Provide a list of booking companies and ask for user to pick one
   def booking_companies
-    #Provide a list of booking companies and ask for user to pick one
     puts ""
     puts "Booking companies have different sports odds. Pick a booking company to see some odds. Otherwise, type 'exit.'"
     SportsOdds::Odds.list_booking_companies
@@ -29,7 +30,8 @@ class SportsOdds::CLI
         if @booking_company != nil
           SportsOdds::Scraper.scrape_page(@booking_company.class_name)
           puts "Your booking company is #{input.capitalize}."
-          exit 
+          #need to fix
+          exit
         else
           puts "Invalid answer. Please try again."
           input = gets.strip.downcase
@@ -38,13 +40,17 @@ class SportsOdds::CLI
     end
   end #booking_companies
 
-  # 4. Provide list of teams
-  def team_list
+  #Provide list of teams and ask user to pick one
+  def make_teams
     puts ""
-    puts "team list"
-  # 5. Ask for user to pick a team
-    @team_choice = gets.strip.downcase
+    puts "Please pick a team from the following list:"
+    SportsOdds::Odds.list_teams
+    @team_choice = gets.strip.upcase
+    SportsOdds::Odds.list_teams.include?(@team_choice) ? "You pick #{@team_choice}" : make_teams
   end
+
+  # SportsOdds::Scraper.scrape_page(bookmaker)
+  # SportsOdds::CLI.new.make_teams
 
   # 6. Return odds based off user picks
   def odds
