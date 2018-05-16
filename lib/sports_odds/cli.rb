@@ -6,7 +6,7 @@ class SportsOdds::CLI
 
   def call
     hey
-    menu
+    booking_companies
   end
   # 1. Welcome user
   def hey
@@ -27,9 +27,9 @@ class SportsOdds::CLI
       while input != 'exit'
         @booking_company = SportsOdds::Odds.choose_booking_company(input)
         if @booking_company != nil
-          puts "Your booking company is #{input.capitalize}."
           SportsOdds::Scraper.scrape_page(@booking_company.class_name)
-          binding.pry
+          puts "Your booking company is #{input.capitalize}."
+          exit 
         else
           puts "Invalid answer. Please try again."
           input = gets.strip.downcase
