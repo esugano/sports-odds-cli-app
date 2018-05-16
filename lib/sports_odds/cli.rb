@@ -62,12 +62,14 @@ class SportsOdds::CLI
             input = gets.strip.upcase
             if input == "N"
               bye
-            elsif input = "Y"
+            elsif input == "Y"
               menu
             else
               puts "Mr. Terminal didn't get that."
               input = gets.strip.upcase
             end
+          else
+            bye
           end
         end
       end #while
