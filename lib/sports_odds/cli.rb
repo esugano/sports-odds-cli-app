@@ -52,27 +52,31 @@ class SportsOdds::CLI
     if input == "EXIT"
       bye
     else
-      while input != "EXIT"
-        SportsOdds::Odds.all.each do |team|
-          if input == team.name.upcase
-            puts ""
-            puts "#{input.capitalize} odds are #{team.odds}"
-            puts ""
-            puts "Would you like another team? (Y/N)."
-            input = gets.strip.upcase
-            if input == "N"
-              bye
-            elsif input == "Y"
-              menu
-            else
-              puts "Mr. Terminal didn't get that."
+      if input != "EXIT"
+        while input != "EXIT"
+          SportsOdds::Odds.all.each do |team|
+            if input == team.name.upcase
+              puts ""
+              puts "#{input.capitalize} odds are #{team.odds}"
+              puts ""
+              puts "Would you like another team? (Y/N)."
               input = gets.strip.upcase
+              if input == "N"
+                bye
+              elsif input == "Y"
+                menu
+              else
+                puts "Mr. Terminal didn't get that."
+                input = gets.strip.upcase
+                menu
+              end
             end
-          else
-            bye
           end
         end
-      end #while
+      else
+        puts "testing"
+        menu
+      end
     end #if/else
   end #menu
 
