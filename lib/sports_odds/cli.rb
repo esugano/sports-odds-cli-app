@@ -40,7 +40,7 @@ class SportsOdds::CLI
     end
   end #booking_companies
 
-  #Provide list of teams and ask user to pick one
+  #Provide list of teams and ask user to pick one to return odds
   def menu
     puts ""
     puts "Please pick a team from the following list."
@@ -49,16 +49,25 @@ class SportsOdds::CLI
     puts "Enter your team now or type 'exit' to leave the terminal."
     puts ""
     input = gets.strip.upcase
-    if input == "exit"
+    if input == "EXIT"
       bye
     else
-      while input != "exit"
+      while input != "EXIT"
         SportsOdds::Odds.all.each do |team|
           if input == team.name.upcase
             puts ""
             puts "#{input.capitalize} odds are #{team.odds}"
-            puts "Would you like another team?"
+            puts ""
+            puts "Would you like another team? (Y/N)."
             input = gets.strip.upcase
+            if input == "N"
+              bye
+            elsif input = "Y"
+              menu
+            else
+              puts "Mr. Terminal didn't get that."
+              input = gets.strip.upcase
+            end
           end
         end
       end #while
