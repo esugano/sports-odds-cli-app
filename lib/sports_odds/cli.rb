@@ -1,5 +1,5 @@
 class SportsOdds::CLI
-  attr_accessor :booking_company, :team_choice
+  attr_accessor :booking_company
 
   @booking_company = nil
   @team_choice = nil
@@ -43,17 +43,27 @@ class SportsOdds::CLI
   #Provide list of teams and ask user to pick one
   def menu
     puts ""
-    puts "Please pick a team from the following list:"
+    puts "Please pick a team from the following list."
     SportsOdds::Odds.list_teams
     puts ""
-    @team_choice = gets.strip.upcase
-    SportsOdds::Odds.all.each do |team|
-      if @team_choice == team.name.upcase
-        puts ""
-        puts "#{@team_choice.capitalize} odds are#{team.odds}"
-      end
-    end
-  end
+    puts "Enter your team now or type 'exit' to leave the terminal."
+    puts ""
+    input = gets.strip.upcase
+    if input == "exit"
+      bye
+    else
+      while input != "exit"
+        SportsOdds::Odds.all.each do |team|
+          if input == team.name.upcase
+            puts ""
+            puts "#{input.capitalize} odds are #{team.odds}"
+            puts "Would you like another team?"
+            input = gets.strip.upcase
+          end
+        end
+      end #while
+    end #if/else
+  end #menu
 
   def bye
     puts "You are now exiting the terminal. PEACE."
