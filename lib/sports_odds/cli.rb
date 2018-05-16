@@ -7,6 +7,8 @@ class SportsOdds::CLI
   def call
     hey
     booking_companies
+    binding.pry
+    make_teams
   end
 
   #Welcome user
@@ -30,8 +32,7 @@ class SportsOdds::CLI
         if @booking_company != nil
           SportsOdds::Scraper.scrape_page(@booking_company.class_name)
           puts "Your booking company is #{input.capitalize}."
-          #need to fix
-          exit
+          input = 'exit'
         else
           puts "Invalid answer. Please try again."
           input = gets.strip.downcase
@@ -46,7 +47,7 @@ class SportsOdds::CLI
     puts "Please pick a team from the following list:"
     SportsOdds::Odds.list_teams
     @team_choice = gets.strip.upcase
-    SportsOdds::Odds.list_teams.include?(@team_choice) ? "You pick #{@team_choice}" : make_teams
+    SportsOdds::Odds.list_teams.include?(@team_choice) ? "You pick #{@team_choice}" : "blah blah blah"
   end
 
   # SportsOdds::Scraper.scrape_page(bookmaker)
@@ -64,6 +65,8 @@ class SportsOdds::CLI
   end
 
   def menu
+
+    booking_companies
     # 6. Return odds based off user picks
     # 7. Ask user to exit or get more odds?
     # 8. Ask for booking company again
@@ -71,17 +74,16 @@ class SportsOdds::CLI
     # 10. Return odds
     # 11. Loop through 7-10 until user exits
     # 12. If exit, say good-bye
-    booking_companies
-    if @booking_company != 'exit'
-      team_list
-      odds
-      puts ""
-      puts "Would you like to see more odds (using the same booking company) or exit?"
-      @team_choice = gets.strip.downcase
-      menu
-    else
-      bye
-    end
+    # if @booking_company != 'exit'
+    #   team_list
+    #   odds
+    #   puts ""
+    #   puts "Would you like to see more odds (using the same booking company) or exit?"
+    #   @team_choice = gets.strip.downcase
+    #   menu
+    # else
+    #   bye
+    # end
 
   end #menu
 
