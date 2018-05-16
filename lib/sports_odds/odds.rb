@@ -13,6 +13,7 @@ class SportsOdds::Odds
     @@all
   end
 
+#hardcode since I can't pull names from css titles
   def self.make_booking_company
     SportsOdds::BookingCompanies.new("bookmaker","book-93")
     SportsOdds::BookingCompanies.new("5dimes","book-19")
@@ -48,7 +49,3 @@ def self.list_teams
 end
 
 end #class
-
-
-# SportsOdds::Odds.choose_booking_company(company)
-# SportsOdds::Odds.list_booking_companies
