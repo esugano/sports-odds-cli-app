@@ -7,7 +7,7 @@ class SportsOdds::CLI
   def call
     hey
     booking_companies
-    make_teams
+    menu
   end
 
   #Welcome user
@@ -41,7 +41,7 @@ class SportsOdds::CLI
   end #booking_companies
 
   #Provide list of teams and ask user to pick one
-  def make_teams
+  def menu
     puts ""
     puts "Please pick a team from the following list:"
     SportsOdds::Odds.list_teams
@@ -50,46 +50,15 @@ class SportsOdds::CLI
     SportsOdds::Odds.all.each do |team|
       if @team_choice == team.name.upcase
         puts ""
-        puts "You pick #{@team_choice.capitalize}"
+        puts "#{@team_choice.capitalize} odds are #{team.odds}"
       end
     end
   end
 
-  # SportsOdds::Scraper.scrape_page(bookmaker)
-  # SportsOdds::CLI.new.make_teams
-
-  # 6. Return odds based off user picks
-  def odds
-    puts ""
-    puts "The 49ers odds of winning is 100%. Just saying."
-  end
 
   def bye
     puts "You are now exiting the terminal. PEACE."
     exit
   end
-
-  def menu
-
-    booking_companies
-    # 6. Return odds based off user picks
-    # 7. Ask user to exit or get more odds?
-    # 8. Ask for booking company again
-    # 9. Ask for team again
-    # 10. Return odds
-    # 11. Loop through 7-10 until user exits
-    # 12. If exit, say good-bye
-    # if @booking_company != 'exit'
-    #   team_list
-    #   odds
-    #   puts ""
-    #   puts "Would you like to see more odds (using the same booking company) or exit?"
-    #   @team_choice = gets.strip.downcase
-    #   menu
-    # else
-    #   bye
-    # end
-
-  end #menu
 
 end #class
