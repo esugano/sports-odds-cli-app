@@ -53,19 +53,23 @@ class SportsOdds::CLI
     if input == "EXIT"
       bye
     elsif
+      #keep looping until user wants to exit
       while input != "EXIT"
         @team_choice = nil
+        #assigns @team_choice if user provides a valid answer
         SportsOdds::Odds.all.each do |team|
           if input == team.name.upcase
             @team_choice = team
           end
         end
+        #return odds if user provides a valid answer, otherwise alerts error and contnues to loop
         if @team_choice != nil
           self.odds(@team_choice)
         else
           puts ""
-          puts "Invalid answer. Try again"
+          puts "Invalid answer. Type in your team again or 'exit' to leave the terminal."
           input = gets.strip.upcase
+          input == 'EXIT' ? self.bye : self.menu
           puts ""
         end
       end#while
@@ -78,14 +82,17 @@ class SportsOdds::CLI
     puts ""
     puts "Would you like another team? (Y/N)."
     input = gets.strip.upcase
+    #continues if user wants more odds
     if input == "N"
       bye
     elsif input == "Y"
       menu
     else
-      puts "Mr. Terminal didn't get that."
+      puts ""
+      puts "Invalid answer. Type in your team again or 'exit' to leave the terminal."
       input = gets.strip.upcase
-      self.menu
+      input == 'EXIT' ? self.bye : self.menu
+      puts ""
     end
   end
 
