@@ -4,19 +4,19 @@ class SportsOdds::CLI
   @booking_company = nil
   @team_choice = nil
 
-  def call
-    hey
-    booking_companies
-    menu
+  def self.call
+    self.hey
+    self.booking_companies
+    self.menu
   end
 
   #Welcome user
-  def hey
+  def self.hey
     puts "Welcome the Sports Odds World!"
   end
 
   #Provide a list of booking companies and ask for user to pick one
-  def booking_companies
+  def self.booking_companies
     puts ""
     puts "Booking companies have different sports odds. Pick a booking company to see some odds. Otherwise, type 'exit.'"
     SportsOdds::Odds.list_booking_companies
@@ -41,9 +41,10 @@ class SportsOdds::CLI
   end #booking_companies
 
   #Provide list of teams and ask user to pick one to return odds
-  def menu
+  def self.menu
     puts ""
     puts "Please pick a team from the following list."
+    puts ""
     SportsOdds::Odds.list_teams
     puts ""
     puts "Enter your team now or type 'exit' to leave the terminal."
@@ -51,36 +52,45 @@ class SportsOdds::CLI
     input = gets.strip.upcase
     if input == "EXIT"
       bye
-    else
-      if input != "EXIT"
-        while input != "EXIT"
-          SportsOdds::Odds.all.each do |team|
-            if input == team.name.upcase
-              puts ""
-              puts "#{input.capitalize} odds are #{team.odds}"
-              puts ""
-              puts "Would you like another team? (Y/N)."
-              input = gets.strip.upcase
-              if input == "N"
-                bye
-              elsif input == "Y"
-                menu
-              else
-                puts "Mr. Terminal didn't get that."
-                input = gets.strip.upcase
-                menu
-              end
-            end
+    elsif
+      while input != "EXIT"
+        @team_choice = nil
+        SportsOdds::Odds.all.each do |team|
+          if input == team.name.upcase
+            @team_choice = team
           end
         end
-      else
-        puts "testing"
-        menu
-      end
+        if @team_choice != nil
+          self.odds(@team_choice)
+        else
+          puts ""
+          puts "Invalid answer. Try again"
+          input = gets.strip.upcase
+          puts ""
+        end
+      end#while
     end #if/else
   end #menu
 
-  def bye
+  def self.odds(team)
+    puts ""
+    puts "#{team.name.capitalize} odds are#{team.odds}"
+    puts ""
+    puts "Would you like another team? (Y/N)."
+    input = gets.strip.upcase
+    if input == "N"
+      bye
+    elsif input == "Y"
+      menu
+    else
+      puts "Mr. Terminal didn't get that."
+      input = gets.strip.upcase
+      self.menu
+    end
+  end
+
+  def self.bye
+    puts ""
     puts "You are now exiting the terminal. PEACE."
     exit
   end
