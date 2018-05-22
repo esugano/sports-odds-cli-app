@@ -24,7 +24,7 @@ class SportsOdds::CLI
 
     #get css class names (to use in scraping) based on booking company
     if input == 'exit'
-      bye
+      self.bye
     else
       while input != 'exit'
         @booking_company = SportsOdds::Odds.choose_booking_company(input)
@@ -67,9 +67,10 @@ class SportsOdds::CLI
           self.odds(@team_choice)
         else
           puts ""
-          puts "Invalid answer. Enter your 'Y' to see more odds or type 'N' to leave the terminal."
+          puts "Invalid answer. Enter your 'Y' to see more odds or type 'exit' to leave the terminal."
           input = gets.strip.upcase
-          input == 'EXIT' ? self.bye : self.menu
+          binding.pry
+          input == 'exit' ? self.bye : self.menu
           puts ""
         end
       end#while
