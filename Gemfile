@@ -2,9 +2,9 @@
 #
 # git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 #
-# # Specify your gem's dependencies in side_hustle.gemspec
+# # Specify your gem's dependencies in sports_odds.gemspec
 # gemspec
-
+#
 
 # A sample Gemfile
 source "https://rubygems.org"
