@@ -51,7 +51,7 @@ class SportsOdds::CLI
     puts ""
     input = gets.strip.upcase
     if input == "EXIT"
-      bye
+      self.bye
     elsif
       #keep looping until user wants to exit
       while input != "EXIT"
@@ -67,7 +67,7 @@ class SportsOdds::CLI
           self.odds(@team_choice)
         else
           puts ""
-          puts "Invalid answer. Enter your 'Y' to see more odds or type 'N' to leave the terminal"
+          puts "Invalid answer. Enter your 'Y' to see more odds or type 'N' to leave the terminal."
           input = gets.strip.upcase
           input == 'EXIT' ? self.bye : self.menu
           puts ""
@@ -84,12 +84,12 @@ class SportsOdds::CLI
     input = gets.strip.upcase
     #continues if user wants more odds
     if input == "N"
-      bye
+      self.bye
     elsif input == "Y"
-      menu
+      self.menu
     else
       puts ""
-      puts "Invalid answer. Type in your team again or 'exit' to leave the terminal."
+      puts "Invalid answer. Enter your 'Y' to see more odds or type 'N' to leave the terminal"
       input = gets.strip.upcase
       input == 'EXIT' ? self.bye : self.menu
       puts ""
