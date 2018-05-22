@@ -47,7 +47,7 @@ class SportsOdds::CLI
     puts ""
     SportsOdds::Odds.list_teams
     puts ""
-    puts "Enter your team now or type 'exit' to leave the terminal."
+    puts "Enter your 'Y' to see more odds or type 'N' to leave the terminal."
     puts ""
     input = gets.strip.upcase
     if input == "EXIT"
