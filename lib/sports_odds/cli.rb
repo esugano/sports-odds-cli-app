@@ -90,7 +90,7 @@ class SportsOdds::CLI
       self.menu
     else
       puts ""
-      puts "Invalid answer. Enter your 'Y' to see more odds or type 'N' to leave the terminal"
+      puts "Invalid answer. Enter your 'Y' to see more odds or type 'exit' to leave the terminal"
       input = gets.strip.upcase
       input == 'EXIT' ? self.bye : self.menu
       puts ""
