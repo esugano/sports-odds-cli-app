@@ -69,7 +69,6 @@ class SportsOdds::CLI
           puts ""
           puts "Invalid answer. Enter your 'Y' to see more odds or type 'exit' to leave the terminal."
           input = gets.strip.upcase
-          binding.pry
           input == 'exit' ? self.bye : self.menu
           puts ""
         end
