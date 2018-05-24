@@ -42,10 +42,10 @@ class SportsOdds::Odds
   end
 
 #list teams based off user's booking company pick
-def self.list_teams
-  @@all.each do |team|
-    puts team.name.upcase
+  def self.list_teams
+    @@all.each do |team|
+      puts team.name.upcase
+    end
   end
-end
 
 end #class
